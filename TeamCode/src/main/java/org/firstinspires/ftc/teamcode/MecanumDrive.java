@@ -238,7 +238,7 @@ public final class MecanumDrive {
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
         localizer = new ThreeDeadWheelLocalizer(hardwareMap, PARAMS.inPerTick);
-
+        // Can I push now?
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
     }
 

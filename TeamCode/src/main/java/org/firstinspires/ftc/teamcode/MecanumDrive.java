@@ -52,8 +52,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-@TeleOp
-
 @Config
 public final class MecanumDrive {
     public static class Params {
@@ -66,13 +64,13 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
 
         // drive model parameters
-        public double inPerTick = 1;
-        public double lateralInPerTick = inPerTick;
-        public double trackWidthTicks = 0;
+        public double inPerTick = 0.003;
+        public double lateralInPerTick = 0.002191602598609258;
+        public double trackWidthTicks = 5017.994446757636;
 
         // feedforward parameters (in tick units)
-        public double kS = 0;
-        public double kV = 0;
+        public double kS = 0.7430821831014045;
+        public double kV = 0.0005775005623818438;
         public double kA = 0;
 
         // path profile parameters (in inches)

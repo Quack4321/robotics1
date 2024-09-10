@@ -18,6 +18,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
+
+import java.util.Vector;
+
 @Config
 @Autonomous(name = "SillyTesting", group = "Autonomous")
 public class SillyTesting extends LinearOpMode {
@@ -34,17 +37,9 @@ public class SillyTesting extends LinearOpMode {
         // actionBuilder builds from the drive steps passed to it,
         // and .build(); is needed to build the trajectory
         trajectoryAction1 = drive.actionBuilder(drive.pose)
-                .lineToYSplineHeading(33, Math.toRadians(0))
-                .waitSeconds(2)
-                .setTangent(Math.toRadians(90))
-                .lineToY(48)
-                .setTangent(Math.toRadians(0))
-                .lineToX(32)
-                .strafeTo(new Vector2d(44.5, 30))
-                .turn(Math.toRadians(180))
-                .lineToX(47.5)
-                .waitSeconds(3)
+                .strafeTo(new Vector2d (60, 5))
                 .build();
+
         if (isStopRequested()) return;
 
         Actions.runBlocking(

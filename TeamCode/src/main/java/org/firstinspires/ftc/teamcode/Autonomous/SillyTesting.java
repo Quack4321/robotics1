@@ -10,6 +10,7 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
+import com.acmerobotics.roadrunner.TrajectoryBuilder;
 
 // Non-RR imports
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -30,21 +31,38 @@ public class SillyTesting extends LinearOpMode {
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(11.8, 61.7, Math.toRadians(90)));
 
-        Action trajectoryAction1;
-        Action trajectoryAction2;
-        Action trajectoryAction3;
-
         // actionBuilder builds from the drive steps passed to it,
         // and .build(); is needed to build the trajectory
-        trajectoryAction1 = drive.actionBuilder(drive.pose)
-                .strafeTo(new Vector2d (60, 5))
+        Action trajectoryAction1 = drive.actionBuilder(drive.pose)
+                .strafeToLinearHeading(new Vector2d(24,24), Math.PI)
+                .build();
+        Action trajectoryAction2 = drive.actionBuilder(new Pose2d(24,24,Math.PI/2))
+                .strafeToLinearHeading(new Vector2d(0,48), 3*Math.PI/2)
+                .build();
+        Action trajectoryAction3 = drive.actionBuilder(new Pose2d(0,48,3*Math.PI/2))
+                .strafeToLinearHeading(new Vector2d(-24,24), 0)
+                .build();
+        Action trajectoryAction4 = drive.actionBuilder(new Pose2d(-24,24,0))
+                .strafeToLinearHeading(new Vector2d(0,0), Math.PI/2)
+                .build();
+        Action trajectoryAction5 = drive.actionBuilder(drive.pose)
+                .lineToY(24)
+                .turnTo(Math.PI)
+                .build();
+        Action trajectoryAction6 = drive.actionBuilder(new Pose2d(0,24,Math.PI))
+                .lineToX(24)
                 .build();
 
         if (isStopRequested()) return;
 
         Actions.runBlocking(
                 new SequentialAction(
-                        trajectoryAction1
+//                        trajectoryAction1,
+//                        trajectoryAction2,
+//                        trajectoryAction3,
+//                        trajectoryAction4
+                        trajectoryAction5,
+                        trajectoryAction6
                 )
         );
     }
